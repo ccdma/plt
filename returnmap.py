@@ -1,14 +1,14 @@
 from pathlib import Path
-from share.blocks import Constructor, LabelOption, PlotBlock, ReturnmapBlock
+from share.blocks import Constructor, LabelOption, ReturnmapBlock
 from share.parse_csv import CsvSource, read_csv
 
 FILEPATH = Path("result.csv")
 DATALEN = 3
-LABELS = [ LabelOption(label=f"sin{i+2}") for i in range(DATALEN) ]
+LABELS = [ LabelOption(label=f"T{i+2}") for i in range(DATALEN) ]
 NO_LABELS = [ LabelOption() for _ in range(DATALEN) ]
 
 BLOCKS = [
-	PlotBlock(
+	ReturnmapBlock(
 		A=read_csv(CsvSource(
 			path=FILEPATH,
 			start=1,
@@ -16,7 +16,7 @@ BLOCKS = [
 		)), 
 		labels=LABELS,
 		title="source"
-	),PlotBlock(
+	),ReturnmapBlock(
 		A=read_csv(CsvSource(
 			path=FILEPATH,
 			start=5,
@@ -24,7 +24,7 @@ BLOCKS = [
 		)), 
 		labels=NO_LABELS,
 		title="mixed"
-	),PlotBlock(
+	),ReturnmapBlock(
 		A=read_csv(CsvSource(
 			path=FILEPATH,
 			start=9,
@@ -35,5 +35,5 @@ BLOCKS = [
 	)
 ]
 
-C = Constructor(BLOCKS, title="sin", align="v")
+C = Constructor(BLOCKS, title="chebyt", align="h")
 C.save(Path("./graph.png"))
