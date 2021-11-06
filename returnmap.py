@@ -1,8 +1,9 @@
 from pathlib import Path
 from share.blocks import Constructor, LabelOption, ReturnmapBlock
 from share.parse_csv import CsvSource, read_csv
+from static import *
 
-FILEPATH = Path("out/chebyt2-5.csv")
+FILEPATH = BASEDIR / Path("chebyt2-5.csv")
 DATALEN = 4
 LABELS = [ LabelOption(label=f"T{i+2}") for i in range(DATALEN) ]
 NO_LABELS = [ LabelOption() for _ in range(DATALEN) ]
