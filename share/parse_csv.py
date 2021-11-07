@@ -9,12 +9,13 @@ class CsvSource:
 	start: int = 1	# 1インデックス
 	end: int = None
 	dtype: np.dtype = float
+	delimiter: str = ","
 
 def read_csv(source: CsvSource) -> np.ndarray:
 	with source.path.open(encoding="utf-8") as f:
 		lines = f.readlines()
 		target_line = lines[source.start-1:source.end]
-		reader = csv.reader(target_line, delimiter=',')
+		reader = csv.reader(target_line, delimiter=source.delimiter)
 		dtyped_matrix = []
 		for row in reader:
 			if(row[-1] == ""):
