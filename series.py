@@ -12,5 +12,8 @@ A=read_csv(CsvSource(
 )).T
 
 plt.plot(A[0], A[1])
+plt.grid()
+plt.xlabel('signals')
+plt.ylabel('mean squared error')
 
 plt.savefig(FILEPATH.parent / (FILEPATH.stem + ".png"))
