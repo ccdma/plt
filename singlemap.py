@@ -13,11 +13,11 @@ BLOCKS = [
 	ReturnmapBlock(
 		A=read_csv(CsvSource(
 			path=FILEPATH,
-			start=43,
-			end=46
+			start=9,
+			end=11
 		)), 
 		labels=NO_LABELS,
-		title="source"
+		title="res"
 	)
 ]
 
