@@ -20,7 +20,7 @@ def plot_primitive(p, q, ax):
 plot_primitive(173, 66, axes[0])
 plot_primitive(173, 45, axes[1])
 plot_primitive(173, 46, axes[2])
-plot_primitive(1021, 10, axes[3])
+plot_primitive(1019, 2, axes[3])
 
 fig.tight_layout()
 plt.show()
