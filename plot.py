@@ -4,7 +4,7 @@ from share.parse_csv import CsvSource, read_csv
 from static import *
 
 FILEPATH = BASEDIR / Path("result.csv")
-DATALEN = 10
+DATALEN = 50
 LABELS = [ LabelOption(label=f"sin[t/{i+1}0]") for i in range(DATALEN) ]
 NO_LABELS = [ LabelOption() for _ in range(DATALEN) ]
 TITLE = "sin"
@@ -18,7 +18,7 @@ BLOCKS = [
 			path=FILEPATH,
 			start=START,
 			end=START-2+STEP
-		)), 
+		))[45:50], 
 		labels=NO_LABELS,
 		title="source"
 	),PlotBlock(
@@ -26,7 +26,7 @@ BLOCKS = [
 			path=FILEPATH,
 			start=START+STEP*1,
 			end=START-2+STEP*2
-		)), 
+		))[:5], 
 		labels=NO_LABELS,
 		title="mixed"
 	),PlotBlock(
@@ -34,7 +34,7 @@ BLOCKS = [
 			path=FILEPATH,
 			start=START+STEP*2,
 			end=START-2+STEP*3
-		)), 
+		))[0:10], 
 		labels=NO_LABELS,
 		title="reconstruct"
 	)

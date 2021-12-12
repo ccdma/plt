@@ -4,7 +4,7 @@ from share.parse_csv import CsvSource, read_csv
 from static import *
 
 FILEPATH = BASEDIR / Path("result.csv")
-DATALEN = 5
+DATALEN = 500
 LABELS = [ LabelOption(label=f"sin[1/{(i+1)}]") for i in range(DATALEN) ]
 NO_LABELS = [ LabelOption() for _ in range(DATALEN) ]
 TITLE = "sin"
@@ -17,15 +17,15 @@ BLOCKS = [
 			path=FILEPATH,
 			start=START,
 			end=START+(DATALEN+1)-2
-		)), 
-		labels=LABELS,
+		))[0:5], 
+		labels=NO_LABELS,
 		title="source"
 	),ReturnmapBlock(
 		A=read_csv(CsvSource(
 			path=FILEPATH,
 			start=START+(DATALEN+1),
 			end=START+(DATALEN+1)*2-2
-		)), 
+		))[0:5], 
 		labels=NO_LABELS,
 		title="mixed"
 	),ReturnmapBlock(
@@ -33,7 +33,7 @@ BLOCKS = [
 			path=FILEPATH,
 			start=START+(DATALEN+1)*2,
 			end=START+(DATALEN+1)*3-2
-		)), 
+		))[0:5], 
 		labels=NO_LABELS,
 		title="reconstruct"
 	)
