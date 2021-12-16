@@ -3,7 +3,7 @@ from share.blocks import Constructor, LabelOption, ReturnmapBlock
 from share.parse_csv import CsvSource, read_csv
 from static import *
 
-FILEPATH = BASEDIR / Path("chebyt2-5.csv")
+FILEPATH = BASEDIR / Path("result.csv")
 DATALEN = 4
 LABELS = [ LabelOption(label=f"T{i+2}") for i in range(DATALEN) ]
 NO_LABELS = [ LabelOption() for _ in range(DATALEN) ]
@@ -14,23 +14,23 @@ BLOCKS = [
 		A=read_csv(CsvSource(
 			path=FILEPATH,
 			start=1,
-			end=4
+			end=3
 		)), 
 		labels=LABELS,
 		title="source"
 	),ReturnmapBlock(
 		A=read_csv(CsvSource(
 			path=FILEPATH,
-			start=6,
-			end=9
+			start=5,
+			end=7
 		)), 
 		labels=NO_LABELS,
 		title="mixed"
 	),ReturnmapBlock(
 		A=read_csv(CsvSource(
 			path=FILEPATH,
-			start=11,
-			end=14
+			start=9,
+			end=11
 		)), 
 		labels=NO_LABELS,
 		title="reconstruct"
