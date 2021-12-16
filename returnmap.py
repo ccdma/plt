@@ -4,34 +4,36 @@ from share.parse_csv import CsvSource, read_csv
 from static import *
 
 FILEPATH = BASEDIR / Path("result.csv")
-DATALEN = 4
-LABELS = [ LabelOption(label=f"T{i+2}") for i in range(DATALEN) ]
+DATALEN = 500
+LABELS = [ LabelOption(label=f"sin[1/{(i+1)}]") for i in range(DATALEN) ]
 NO_LABELS = [ LabelOption() for _ in range(DATALEN) ]
-TITLE = "chebyshev"
+TITLE = "sin"
+
+START = 1
 
 BLOCKS = [
 	ReturnmapBlock(
 		A=read_csv(CsvSource(
 			path=FILEPATH,
-			start=1,
-			end=3
-		)), 
-		labels=LABELS,
+			start=START,
+			end=START+(DATALEN+1)-2
+		))[0:5], 
+		labels=NO_LABELS,
 		title="source"
 	),ReturnmapBlock(
 		A=read_csv(CsvSource(
 			path=FILEPATH,
-			start=5,
-			end=7
-		)), 
+			start=START+(DATALEN+1),
+			end=START+(DATALEN+1)*2-2
+		))[0:5], 
 		labels=NO_LABELS,
 		title="mixed"
 	),ReturnmapBlock(
 		A=read_csv(CsvSource(
 			path=FILEPATH,
-			start=9,
-			end=11
-		)), 
+			start=START+(DATALEN+1)*2,
+			end=START+(DATALEN+1)*3-2
+		))[0:5], 
 		labels=NO_LABELS,
 		title="reconstruct"
 	)

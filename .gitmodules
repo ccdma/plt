@@ -1,0 +1,3 @@
+[submodule "pica"]
+	path = pica
+	url = git@github.com:ccdma/pica.git
