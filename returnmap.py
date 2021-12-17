@@ -3,11 +3,11 @@ from share.blocks import Constructor, LabelOption, ReturnmapBlock
 from share.parse_csv import CsvSource, read_csv
 from static import *
 
-FILEPATH = BASEDIR / Path("result.csv")
-DATALEN = 500
-LABELS = [ LabelOption(label=f"sin[1/{(i+1)}]") for i in range(DATALEN) ]
+FILEPATH = BASEDIR / Path("bachelor/3.csv")
+DATALEN = 4
+LABELS = [ LabelOption(label=f"T2 x0=0.{(i+1)}") for i in range(DATALEN) ]
 NO_LABELS = [ LabelOption() for _ in range(DATALEN) ]
-TITLE = "sin"
+TITLE = ""
 
 START = 1
 
@@ -17,7 +17,7 @@ BLOCKS = [
 			path=FILEPATH,
 			start=START,
 			end=START+(DATALEN+1)-2
-		))[0:5], 
+		)), 
 		labels=NO_LABELS,
 		title="source"
 	),ReturnmapBlock(
@@ -25,7 +25,7 @@ BLOCKS = [
 			path=FILEPATH,
 			start=START+(DATALEN+1),
 			end=START+(DATALEN+1)*2-2
-		))[0:5], 
+		)), 
 		labels=NO_LABELS,
 		title="mixed"
 	),ReturnmapBlock(
@@ -33,7 +33,7 @@ BLOCKS = [
 			path=FILEPATH,
 			start=START+(DATALEN+1)*2,
 			end=START+(DATALEN+1)*3-2
-		))[0:5], 
+		)), 
 		labels=NO_LABELS,
 		title="reconstruct"
 	)
