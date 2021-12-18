@@ -7,7 +7,7 @@ from pica.ica import *
 
 np.random.seed(1)
 
-FILEPATH = BASEDIR / Path("receive/receive-f13a0.csv")
+FILEPATH = BASEDIR / Path("receive/receive-f7f24.csv")
 
 DATA = read_csv(CsvSource(FILEPATH, start=1, end=2))
 CDATA = np.array(DATA[0]) + np.array(DATA[1])*1j
