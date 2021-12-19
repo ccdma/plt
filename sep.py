@@ -22,8 +22,8 @@ for path in FILEPATHES:
 	X_Raw.append(np.array(data[0]) + np.array(data[1])*1j)
 X_Raw = np.array(X_Raw)
 
-slices = 4060
-start = K(88)
+slices = 4073
+start = K(90)
 end = start + 300
 X = np.array([
 	X_Raw[0][start:end],
