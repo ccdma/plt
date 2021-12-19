@@ -33,7 +33,7 @@ fig, axes = subplots(ncols=ncols,nrows=nrows,figsize=(ncols*size,nrows*size))
 for i in range(ncols*nrows):
 	ax = axes[i]
 	step = 100
-	start = 840*100 + i*step
+	start = 850*100 + i*step
 	end = start + step
 	C = CDATA[start:end]
 	#### IQ
