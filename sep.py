@@ -7,13 +7,9 @@ from pica.ica import *
 import matplotlib.pyplot as plt
 
 np.random.seed(1)
-<<<<<<< HEAD
 
 def K(num: int):
 	return int(num*1000)
-=======
-K = 1000
->>>>>>> 4bb96ea4084d807e682f323170271fff0574b72c
 
 FILEPATHES = [
 	BASEDIR / Path("receive/receive-f7f24.csv"),
