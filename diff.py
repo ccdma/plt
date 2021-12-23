@@ -26,7 +26,7 @@ results = []
 slicerang = range(3900, 4200)
 for i in slicerang:
 	slices = i
-	start = K(75)
+	start = K(65)
 	length = 300
 	end = start + length
 	X = np.array([
