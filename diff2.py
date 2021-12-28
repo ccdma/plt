@@ -40,4 +40,5 @@ CDATA = CDATA[800:1800]
 sliced = 1015
 REF = REF[sliced:1000+sliced]
 print(CDATA.real@REF.real)
-print(np.mean(np.abs(np.angle(REF) - np.angle(CDATA))))
+print(f"mse={np.mean(np.abs(np.angle(REF) - np.angle(CDATA)))**2}")
+print(f"ber={np.mean(np.sign(REF.real * CDATA.real + REF.imag *CDATA.imag)-1)/2}")
