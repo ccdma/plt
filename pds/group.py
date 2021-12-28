@@ -5,6 +5,7 @@ merged = {}
 
 key_str = "signals"
 group_str = "samplings"
+use_str = "ber"
 groups = list(set(csv[group_str].tolist()))
 groups.sort()
 for group in groups:
@@ -14,7 +15,7 @@ for group in groups:
 		row = {key_str: target[key_str]}
 		if target[key_str] in merged:
 			row = merged[target[key_str]]
-		row[f"{group_str}:{group}"] = target[group_str]
+		row[f"{group_str}:{group}"] = target[use_str]
 		merged[target[key_str]] = row
 
 csvo = pd.DataFrame(
