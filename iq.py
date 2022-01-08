@@ -14,16 +14,16 @@ CDATA = np.array(DATA[0]) + np.array(DATA[1])*1j
 print(f"datalen={CDATA.shape[0]}")
 # CDATA = np.array(np.exp(np.linspace(0, 2*np.pi, 1024)*1j))
 # CDATA = np.tile(primitive_root_code(19, 2), 20)
-CDATA = CDATA * np.exp(np.full(CDATA.shape, -1.75)*1j)
+CDATA = CDATA * np.exp(np.full(CDATA.shape, 1*np.pi)*1j)
 # CDATA = np.tile(const_powerd_samples(2, np.pi/(1+np.sqrt(2)), 1024), 2)
 # CDATA = CDATA - np.mean(CDATA)
 CDATA = CDATA/np.abs(CDATA)
 # CDATA = CDATA * np.tile(np.exp(np.linspace(0, 2*np.pi, 1100)*(-1j)), 10)[:CDATA.shape[0]]
 # CDATA = np.random.permutation(CDATA)
 
-ncols = 5
-nrows = 2
-size = 3
+ncols = 4
+nrows = 4
+size = 5
 fig, axes = subplots(ncols=ncols,nrows=nrows,figsize=(ncols*size,nrows*size))
 
 # ax = axes[0]
@@ -33,13 +33,13 @@ fig, axes = subplots(ncols=ncols,nrows=nrows,figsize=(ncols*size,nrows*size))
 for i in range(ncols*nrows):
 	ax = axes[i]
 	step = 100
-	start = 8*100 + i*step
+	start = 0 + i*step
 	end = start + step
 	C = CDATA[start:end]
 	#### IQ
 	ax.scatter(C.real, C.imag, s=1)
 	ax.plot(C.real, C.imag, lw=0.41)
-	ax.set_title(f"{start-800}-{end-800}")
+	ax.set_title(f"{start}-{end}")
 	ax.set_xlim(-1, 1)
 	ax.set_ylim(-1, 1)
 
@@ -48,3 +48,4 @@ plt.gca().set_aspect('equal','datalim')
 # fig.suptitle(f"1024-circle SR=5M BW=10M", fontsize=16)
 plt.tight_layout()
 fig.savefig(SAVEFILE)
+print(SAVEFILE)
