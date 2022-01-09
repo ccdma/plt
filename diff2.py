@@ -16,7 +16,7 @@ REF = np.tile(const_powerd_samples(2, np.pi/(1+np.sqrt(2)), 1024), 3)
 FILEPATH = BASEDIR / Path("receive/receive-f13a0.csv")
 DATA = read_csv(CsvSource(FILEPATH, start=1, end=2))
 CDATA = np.array(DATA[0]) + np.array(DATA[1])*1j
-CDATA = CDATA * np.exp(np.full(CDATA.shape, 1*np.pi)*1j)
+CDATA = CDATA * np.exp(np.full(CDATA.shape, 0.64*np.pi)*1j)
 CDATA = CDATA/np.abs(CDATA)
 CDATA = CDATA[:1000]
 

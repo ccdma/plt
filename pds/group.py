@@ -3,9 +3,9 @@ import pandas as pd
 csv = pd.read_csv("pds/r.csv", delimiter="\t")
 merged = {}
 
-key_str = "samplings"
-group_str = "signals"
-use_str = "cte"
+key_str = "signals"
+group_str = "samplings"
+use_str = "ber"
 groups = list(set(csv[group_str].tolist()))
 groups.sort()
 for group in groups:
