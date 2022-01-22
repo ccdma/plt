@@ -8,24 +8,26 @@ import matplotlib.pyplot as plt
 
 np.random.seed(1)
 
-FILEPATH = BASEDIR / Path("receive/receive-fb9ce.csv")
+FILEPATH = BASEDIR / Path("receive/receive-fb9ce-4.csv")
 
-# def basearg(array: np.ndarray, dim: int=2):
-# 	args = np.angle(array)
-# 	length = array.shape[0]
-# 	allbaseargs = []
-# 	for i in range(dim):
-# 		baseargs = ((args[1:] - 2*np.pi*i)/(dim) - args[:length-1])%(2*np.pi)
-# 		allbaseargs.extend(baseargs.tolist())
-# 	plt.hist(allbaseargs, bins=100)
-# 	plt.show()
+def basearg(array: np.ndarray, dim: int=2):
+	args = np.angle(array)
+	length = array.shape[0]
+	allbaseargs = []
+	for i in range(dim):
+		baseargs = ((args[1:] - 2*np.pi*i)/(dim) - args[:length-1])%(2*np.pi)
+		allbaseargs.extend(baseargs.tolist())
+	plt.hist(allbaseargs, bins=100)
+	plt.show()
 
 DATA = read_csv(CsvSource(FILEPATH, start=1, end=2))
 CDATA = np.array(DATA[0]) + np.array(DATA[1])*1j
 print(f"datalen={CDATA.shape[0]}")
 # CDATA = np.array(np.exp(np.linspace(0, 2*np.pi, 1024)*1j))
 # CDATA = np.tile(primitive_root_code(19, 2), 20)
-CDATA = fix_rotate(CDATA, 0.1, 1600)
+for i in range(60):
+	print(i, estimate_std(fix_rotate(CDATA[:50], 0.1*i), 2))
+CDATA = fix_rotate(CDATA, 5.8)
 # CDATA = np.tile(const_powerd_samples(2, np.pi/(1+np.sqrt(2)), 1024), 2)
 # CDATA = CDATA - np.mean(CDATA)
 CDATA = CDATA/np.abs(CDATA)
