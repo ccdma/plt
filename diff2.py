@@ -11,10 +11,11 @@ np.random.seed(1)
 def K(num: int):
 	return int(num*1000)
 
-REF = np.tile(const_powerd_samples(2, np.pi/(1+np.sqrt(2)), 1024), 3)
 BERS = []
-for i in range(100):
-	FILEPATH = BASEDIR / Path(f"receive/receive-fb9ce-{i}.csv")
+for i in range(1, 19):
+	REF = np.tile(const_powerd_samples(2, np.pi/(1+np.sqrt(2)), 1024), 3)
+
+	FILEPATH = BASEDIR / Path(f"receive/b/receive-fb9ce-{i}.csv")
 	DATA = read_csv(CsvSource(FILEPATH, start=1, end=2))
 	CDATA = np.array(DATA[0]) + np.array(DATA[1])*1j
 
