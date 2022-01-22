@@ -10,16 +10,6 @@ np.random.seed(1)
 
 FILEPATH = BASEDIR / Path("receive/receive-fb9ce-4.csv")
 
-def basearg(array: np.ndarray, dim: int=2):
-	args = np.angle(array)
-	length = array.shape[0]
-	allbaseargs = []
-	for i in range(dim):
-		baseargs = ((args[1:] - 2*np.pi*i)/(dim) - args[:length-1])%(2*np.pi)
-		allbaseargs.extend(baseargs.tolist())
-	plt.hist(allbaseargs, bins=100)
-	plt.show()
-
 DATA = read_csv(CsvSource(FILEPATH, start=1, end=2))
 CDATA = np.array(DATA[0]) + np.array(DATA[1])*1j
 print(f"datalen={CDATA.shape[0]}")
