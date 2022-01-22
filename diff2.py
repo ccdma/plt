@@ -13,10 +13,11 @@ def K(num: int):
 
 REF = np.tile(const_powerd_samples(2, np.pi/(1+np.sqrt(2)), 1024), 3)
 
-FILEPATH = BASEDIR / Path("receive/receive-f13a0.csv")
+FILEPATH = BASEDIR / Path(f"receive/receive-fb9ce.csv")
 DATA = read_csv(CsvSource(FILEPATH, start=1, end=2))
 CDATA = np.array(DATA[0]) + np.array(DATA[1])*1j
-CDATA = CDATA * np.exp(np.full(CDATA.shape, 0.84*np.pi)*1j)
+
+CDATA = fix_rotate(CDATA, 0.1, 1600)
 CDATA = CDATA/np.abs(CDATA)
 CDATA = CDATA[:1000]
 
