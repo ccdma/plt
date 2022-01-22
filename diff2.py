@@ -12,7 +12,7 @@ def K(num: int):
 	return int(num*1000)
 
 BERS = []
-for i in range(1, 19):
+for i in range(1, 71 + 1):
 	REF = np.tile(const_powerd_samples(2, np.pi/(1+np.sqrt(2)), 1024), 3)
 
 	FILEPATH = BASEDIR / Path(f"receive/b/receive-fb9ce-{i}.csv")
