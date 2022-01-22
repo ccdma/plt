@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 np.random.seed(1)
 
-FILEPATH = BASEDIR / Path("receive/receive-fb9ce.csv")
+FILEPATH = BASEDIR / Path("receive/receive-fb9ce-4.csv")
 
 def basearg(array: np.ndarray, dim: int=2):
 	args = np.angle(array)
@@ -23,8 +23,7 @@ def basearg(array: np.ndarray, dim: int=2):
 DATA = read_csv(CsvSource(FILEPATH, start=1, end=2))
 CDATA = np.array(DATA[0]) + np.array(DATA[1])*1j
 print(f"datalen={CDATA.shape[0]}")
-base_0 = estimate_basearg(CDATA[:100], 2)
-CDATA = fix_rotate(CDATA, base_0, 1400)
+CDATA = fix_rotate(CDATA, estimate_basearg(CDATA[:100], 2), 1400)
 CDATA = CDATA/np.abs(CDATA)
 
 ncols = 4

@@ -17,7 +17,7 @@ FILEPATH = BASEDIR / Path(f"receive/receive-fb9ce.csv")
 DATA = read_csv(CsvSource(FILEPATH, start=1, end=2))
 CDATA = np.array(DATA[0]) + np.array(DATA[1])*1j
 
-CDATA = fix_rotate(CDATA, 0.1, 1600)
+CDATA = fix_rotate(CDATA, estimate_basearg(CDATA[:100], 2), 1400)
 CDATA = CDATA/np.abs(CDATA)
 CDATA = CDATA[:1000]
 
