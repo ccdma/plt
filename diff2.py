@@ -12,10 +12,10 @@ def K(num: int):
 	return int(num*1000)
 
 BERS = []
-for i in range(1, 71 + 1):
+for i in range(1, 20 + 1):
 	REF = np.tile(const_powerd_samples(2, np.pi/(1+np.sqrt(2)), 1024), 3)
 
-	FILEPATH = BASEDIR / Path(f"receive/b/receive-fb9ce-{i}.csv")
+	FILEPATH = BASEDIR / Path(f"receive/b2-65/receive-fb9ce-{i}.csv")
 	DATA = read_csv(CsvSource(FILEPATH, start=1, end=2))
 	CDATA = np.array(DATA[0]) + np.array(DATA[1])*1j
 
