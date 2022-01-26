@@ -9,10 +9,10 @@ import matplotlib.pyplot as plt
 np.random.seed(1)
 
 SIGNALS = 4
-N = 1000
-BITLEN = 100
+N = 10
+BITLEN = 10000
 LENGTH = N * BITLEN
-norm_scale = 0.0
+norm_scale = 0.01
 S = np.array([const_powerd_samples(2, np.random.random(), LENGTH) for i in range(SIGNALS)])
 BITS = np.array([[ np.sign(np.random.randint(0, 2)-0.5) for i in range(BITLEN) ] for _ in range(SIGNALS)])
 B = np.repeat(BITS, N, axis=1)
