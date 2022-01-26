@@ -13,6 +13,7 @@ for smpl in smpls:
 	_mins = _mins.append(data.loc[targets["ber"].idxmin()])
 
 a,b = np.polyfit(_mins.loc[:, "samplings"], _mins.loc[:, "signals"], 1)
+print(f"y={a}x+{b}")
 plt.scatter(_mins.loc[:, "samplings"], _mins.loc[:, "signals"])
 plt.xlabel("Code Length")
 plt.ylabel("K: Number of Users")
