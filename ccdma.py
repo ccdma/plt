@@ -1,3 +1,4 @@
+from cProfile import label
 from pathlib import Path
 import sys
 from numpy import sqrt
@@ -32,10 +33,12 @@ N = 10
 bers = []
 for signal in K:
 	bers.append(test(signal, N))
-plt.plot(K, bers)
-
-bers = cdma_ber(N, K)
-plt.plot(K, bers)
-
+plt.plot(K, bers, label="simulation")
+# bers = cdma_ber(N, K)
+# plt.plot(K, bers, label="formula")
 plt.yscale("log")
+
+plt.xlabel("K: Number of Users")
+plt.ylabel("BER")
+plt.legend()
 plt.show()
