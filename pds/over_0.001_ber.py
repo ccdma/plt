@@ -1,12 +1,16 @@
 import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
 
-csv = pd.read_csv("./out/r.csv", delimiter="\t")
+data = pd.read_csv("./out/all.csv", delimiter="\t")
+
+data = data.query("stddev == 0.01")
 out = []
 
-smpls = list(set(csv["samplings"].tolist()))
+smpls = list(set(data["samplings"].tolist()))
 smpls.sort()
 for smpl in smpls:
-	targets = csv.query(f"samplings == {smpl}")
+	targets = data.query(f"samplings == {smpl}")
 	if targets.size < 2:
 		raise Exception("size < 2")
 	targets = targets.sort_values("signals")
@@ -15,7 +19,14 @@ for smpl in smpls:
 			out.append(target.to_dict())
 			break
 
-csvo = pd.DataFrame(
+over0001 = pd.DataFrame(
 	data=out
 )
-csvo.to_csv("./out/over0001.csv")
+
+x = over0001.loc[:, "signals"]
+y = over0001.loc[:, "samplings"]
+a, b = np.polyfit(x, y, 1)
+plt.scatter(x, y)
+plt.plot(x, a*x+b)
+plt.show()
+# over0001.to_csv("./out/over0001.csv")

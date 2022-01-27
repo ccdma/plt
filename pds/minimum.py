@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 data = pd.read_csv("./out/all.csv", delimiter="\t")
-data = data.query("stddev == 0.01")
+data = data.query("stddev == 0.05")
 smpls = data["samplings"].unique()
 _mins = data.iloc[0:0] # 型が同じ、空のDataFrameを作成
 smpls.sort()
