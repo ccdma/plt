@@ -24,9 +24,13 @@ over0001 = pd.DataFrame(
 )
 
 x = over0001.loc[:, "signals"]
-y = over0001.loc[:, "samplings"]
+y = over0001.loc[:, "time(ms)"]
 a, b = np.polyfit(x, y, 1)
 plt.scatter(x, y)
+print(f"y={a}x+{b}")
+
 plt.plot(x, a*x+b)
+plt.xlabel("Number of Users")
+plt.ylabel("Code Length")
 plt.show()
 # over0001.to_csv("./out/over0001.csv")
