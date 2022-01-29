@@ -30,7 +30,7 @@ def test(signal: int, N: int):
 	return ber
 
 K_List = np.arange(2, 20)
-N = 5
+N = 10
 bers = []
 for K in K_List: # number of users
 	bers.append(test(K, N))

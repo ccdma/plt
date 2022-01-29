@@ -8,17 +8,18 @@ import matplotlib.pyplot as plt
 
 np.random.seed(1)
 
-FILEPATH = BASEDIR / Path("receive/b2/receive-fb9ce-10.csv")
+FILEPATH = BASEDIR / Path("data.csv")
 
 DATA = read_csv(CsvSource(FILEPATH, start=1, end=2))
 CDATA = np.array(DATA[0]) + np.array(DATA[1])*1j
+# CDATA = weyl_samples(np.sqrt(0.1), 0.1, 1000)
 print(f"datalen={CDATA.shape[0]}")
-CDATA = fix_rotate(CDATA, estimate_basearg(CDATA[:100], 2), 1400)
-CDATA = CDATA/np.abs(CDATA)
+# CDATA = fix_rotate(CDATA, estimate_basearg(CDATA[:100], 2), 1400)
+# CDATA = CDATA/np.abs(CDATA)
 
-ncols = 4
-nrows = 4
-size = 2
+ncols = 1
+nrows = 1
+size = 6
 fig, axes = subplots(ncols=ncols,nrows=nrows,figsize=(ncols*size,nrows*size))
 
 # ax = axes[0]
@@ -27,7 +28,7 @@ fig, axes = subplots(ncols=ncols,nrows=nrows,figsize=(ncols*size,nrows*size))
 
 for i in range(ncols*nrows):
 	ax = axes[i]
-	step = 100
+	step = 1000
 	start = 0 + i*step
 	end = start + step
 	C = CDATA[start:end]
