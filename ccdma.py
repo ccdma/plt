@@ -14,7 +14,8 @@ def test(signal: int, N: int):
 	bitlen = 1000
 	length = N * bitlen
 	norm_scale = 0.01
-	S = np.array([const_powerd_samples(2, np.random.random(), length) for i in range(signal)])
+	S = np.array([weyl_samples(i/signal, i/signal, length) for i in range(signal)])
+	# S = np.array([const_powerd_samples(2, np.random.random(), length) for i in range(signal)])
 	BITS = np.array([[ np.sign(np.random.randint(0, 2)-0.5) for i in range(bitlen) ] for _ in range(signal)])
 	B = np.repeat(BITS, N, axis=1)
 
@@ -29,7 +30,7 @@ def test(signal: int, N: int):
 	return ber
 
 K = np.arange(2, 20)
-N = 10
+N = 5
 bers = []
 for signal in K:
 	bers.append(test(signal, N))
