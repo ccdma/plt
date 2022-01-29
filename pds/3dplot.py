@@ -20,6 +20,6 @@ ax.set_ylabel("K: Number of Users")
 ax.set_zlabel("BER")
 
 ax.set_zscale('log')
-ax.set_zlim(10e-5, 9e-3)
+ax.set_zlim(10e-5, 1e-3)
 fig.show()
 plt.show()
