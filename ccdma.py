@@ -8,10 +8,10 @@ from static import *
 from pica.ica import *
 import matplotlib.pyplot as plt
 
-np.random.seed(1)
+np.random.seed(3)
 
 def test(signal: int, N: int):
-	bitlen = 1000
+	bitlen = 300
 	length = N * bitlen
 	norm_scale = 0.01
 	S = np.array([weyl_samples(i/signal, 1/(2*N), length) for i in range(signal)])
@@ -29,8 +29,8 @@ def test(signal: int, N: int):
 	ber = np.abs(BITS_R - BITS).mean()/2
 	return ber
 
-K_List = np.arange(2, 20)
-N = 10
+K_List = np.arange(30, 60)
+N = 31
 bers = []
 for K in K_List: # number of users
 	bers.append(test(K, N))
@@ -41,5 +41,5 @@ plt.yscale("log")
 
 plt.xlabel("K: Number of Users")
 plt.ylabel("BER")
-plt.legend()
+# plt.legend()
 plt.show()
