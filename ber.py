@@ -16,4 +16,3 @@ plt.plot(K, BER)
 plt.xlabel("K: number of users")
 plt.ylabel("BER")
 plt.show()
-
