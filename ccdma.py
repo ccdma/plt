@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 np.random.seed(3)
 
 def test(signal: int, N: int):
-	bitlen = 500
+	bitlen = 100
 	length = N * bitlen
 	norm_scale = 0.01
 	# S = np.array([weyl_samples(i/signal+1/(2*N), 0, length) for i in range(signal)])
@@ -30,11 +30,11 @@ def test(signal: int, N: int):
 	return ber
 
 K_List = np.arange(3, 30)
-N = 62
+N = 63
 bers = []
-for K in K_List: # number of users
-	bers.append(test(K, N))
-plt.plot(K_List, bers, label="simulation")
+# for K in K_List: # number of users
+# 	bers.append(test(K, N))
+# plt.scatter(K_List, bers, label="simulation")
 
 bers = cdma_ber(N, 0.01, K_List)
 plt.plot(K_List, bers, label="formula")

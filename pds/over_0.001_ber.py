@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.ticker as ticker
 
 data = pd.read_csv("./out/all.csv", delimiter="\t")
 
@@ -28,9 +29,10 @@ y = over0001.loc[:, "time(ms)"]
 a, b = np.polyfit(x, y, 1)
 plt.scatter(x, y)
 print(f"y={a}x+{b}")
-
+plt.gca().get_xaxis().set_major_locator(ticker.MaxNLocator(integer=True))
 plt.plot(x, a*x+b)
 plt.xlabel("Number of Users")
 plt.ylabel("Code Length")
 plt.show()
+
 # over0001.to_csv("./out/over0001.csv")
