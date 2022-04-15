@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 np.random.seed(3)
 
 def test(signal: int, N: int):
-	bitlen = 1000
+	bitlen = 100000
 	length = N * bitlen
 	norm_scale = 0.01
 	# S = np.array([weyl_samples(i/signal+1/(2*N), 0, length) for i in range(signal)])
@@ -26,7 +26,7 @@ def test(signal: int, N: int):
 		r = np.random.randint(0, N)
 		T[i] = np.hstack([T[i, r:], T[i, :r]]) 
 
-	A =  np.random.rand(signal)  #np.ones(signal)
+	A =  np.random.rand(signal) + 1.0 #np.ones(signal)
 	X = A @ T + np.random.normal(0.0, norm_scale, length)
 
 	B_R = np.tile(X, (signal, 1)) * S.conj()
@@ -35,12 +35,12 @@ def test(signal: int, N: int):
 	ber = np.abs(BITS_R[0] - BITS[0]).mean()/2
 	return ber
 
-K_List = np.arange(20, 30)
+K_List = np.arange(2, 20)
 N = 63
 bers = []
-for K in K_List: # number of users
-	bers.append(test(K, N))
-plt.scatter(K_List, bers, label="simulation")
+# for K in K_List: # number of users
+# 	bers.append(test(K, N))
+# plt.scatter(K_List, bers, label="simulation")
 
 bers = cdma_ber(N, 0.01, K_List)
 plt.plot(K_List, bers, label="formula")
