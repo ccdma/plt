@@ -1,5 +1,6 @@
 from cProfile import label
 from pathlib import Path
+from random import randint
 import sys
 from numpy import sqrt
 from sympy import plot
@@ -11,7 +12,7 @@ import matplotlib.pyplot as plt
 np.random.seed(3)
 
 def test(signal: int, N: int):
-	bitlen = 100
+	bitlen = 1000
 	length = N * bitlen
 	norm_scale = 0.01
 	# S = np.array([weyl_samples(i/signal+1/(2*N), 0, length) for i in range(signal)])
@@ -20,21 +21,26 @@ def test(signal: int, N: int):
 	B = np.repeat(BITS, N, axis=1)
 
 	T = B*S
-	A = np.ones(signal)
+
+	for i in range(1, signal):
+		r = np.random.randint(0, N)
+		T[i] = np.hstack([T[i, r:], T[i, :r]]) 
+
+	A =  np.random.rand(signal)  #np.ones(signal)
 	X = A @ T + np.random.normal(0.0, norm_scale, length)
 
 	B_R = np.tile(X, (signal, 1)) * S.conj()
 
 	BITS_R = np.sign(B_R.reshape((signal, bitlen, N)).mean(axis=2).real)
-	ber = np.abs(BITS_R - BITS).mean()/2
+	ber = np.abs(BITS_R[0] - BITS[0]).mean()/2
 	return ber
 
-K_List = np.arange(3, 30)
+K_List = np.arange(20, 30)
 N = 63
 bers = []
-# for K in K_List: # number of users
-# 	bers.append(test(K, N))
-# plt.scatter(K_List, bers, label="simulation")
+for K in K_List: # number of users
+	bers.append(test(K, N))
+plt.scatter(K_List, bers, label="simulation")
 
 bers = cdma_ber(N, 0.01, K_List)
 plt.plot(K_List, bers, label="formula")
